@@ -1,0 +1,72 @@
+# Template pyproject for qt-file-canvas.
+#
+# In-tree this file is informational only — the canvas ships with the
+# rest of hvsr_pro.  After the git-subtree-split extraction, drop it
+# into the standalone repo as the build manifest and bump the version
+# / fill in the source URL.
+#
+# The PyPI distribution name (`qt-file-canvas`) maps to the import
+# name (`qt_file_canvas`) via underscore-to-dash convention — the
+# canonical Python packaging pattern.
+
+[project]
+name = "qt-file-canvas"
+version = "0.1.0"
+description = "Embeddable Qt file tree + multi-format viewer canvas with a plugin registry."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "qt-file-canvas contributors" },
+]
+keywords = ["qt", "pyside6", "file-explorer", "preview", "plugin"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: X11 Applications :: Qt",
+    "Environment :: Win32 (MS Windows)",
+    "Environment :: MacOS X",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: User Interfaces",
+]
+dependencies = [
+    "PySide6>=6.4",
+]
+
+[project.optional-dependencies]
+csv = ["pandas>=1.5"]
+excel = ["openpyxl>=3.1"]
+syntax = ["Pygments>=2.14"]
+all = [
+    "pandas>=1.5",
+    "openpyxl>=3.1",
+    "Pygments>=2.14",
+]
+test = [
+    "pytest>=7.0",
+]
+
+[project.urls]
+Source = "https://github.com/mersadfathizadeh1995/qt_canvas"
+Issues = "https://github.com/mersadfathizadeh1995/qt_canvas/issues"
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["qt_file_canvas"]
+
+[tool.setuptools.package-dir]
+qt_file_canvas = "."
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
