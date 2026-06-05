@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 from PySide6.QtWidgets import QApplication, QTextBrowser
 
-from hvsr_pro.packages.qt_file_canvas.viewers.markdown_viewer import (
+from qt_file_canvas.viewers.markdown_viewer import (
     MarkdownViewer,
 )
 

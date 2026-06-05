@@ -1,11 +1,6 @@
-# Template pyproject for qt-file-canvas.
+# Build manifest for the standalone qt-file-canvas package.
 #
-# In-tree this file is informational only — the canvas ships with the
-# rest of hvsr_pro.  After the git-subtree-split extraction, drop it
-# into the standalone repo as the build manifest and bump the version
-# / fill in the source URL.
-#
-# The PyPI distribution name (`qt-file-canvas`) maps to the import
+# The distribution name (`qt-file-canvas`) maps to the import
 # name (`qt_file_canvas`) via underscore-to-dash convention — the
 # canonical Python packaging pattern.
 
@@ -62,10 +57,16 @@ requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["qt_file_canvas"]
+packages = [
+    "qt_file_canvas",
+    "qt_file_canvas.examples",
+    "qt_file_canvas.viewers",
+]
 
 [tool.setuptools.package-dir]
-qt_file_canvas = "."
+"qt_file_canvas" = "."
+"qt_file_canvas.examples" = "examples"
+"qt_file_canvas.viewers" = "viewers"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

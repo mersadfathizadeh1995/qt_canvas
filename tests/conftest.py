@@ -133,5 +133,5 @@ def isolated_registry() -> "ViewerRegistry":  # noqa: F821
     fight over keys.  The fixture re-imports the public symbols so
     consumers don't need to know the private path.
     """
-    from hvsr_pro.packages.qt_file_canvas.registry import ViewerRegistry
+    from qt_file_canvas.registry import ViewerRegistry
     return ViewerRegistry()

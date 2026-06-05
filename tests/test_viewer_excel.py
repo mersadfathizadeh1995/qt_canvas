@@ -9,7 +9,7 @@ from PySide6.QtWidgets import QApplication, QComboBox, QTableView
 
 pytest.importorskip("openpyxl")
 
-from hvsr_pro.packages.qt_file_canvas.viewers.excel_viewer import ExcelViewer
+from qt_file_canvas.viewers.excel_viewer import ExcelViewer
 
 
 def test_load_xlsx_populates_model(

@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 from PySide6.QtWidgets import QApplication, QLabel
 
-from hvsr_pro.packages.qt_file_canvas.viewers.image import ImageViewer
+from qt_file_canvas.viewers.image import ImageViewer
 
 
 def test_load_path_sets_pixmap(

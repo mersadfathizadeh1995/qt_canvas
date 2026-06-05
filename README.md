@@ -6,9 +6,9 @@ registry. Built on PySide6.  Optional heavy dependencies
 degrades that one file kind to the binary fallback — the rest of the
 canvas keeps working.
 
-Currently lives in-tree under `hvsr_pro/packages/qt_file_canvas/` as
-a sibling of `hv_hub`.  Designed for `git subtree split` extraction
-to its own repo (`qt-file-canvas` on PyPI) once it stabilises.
+This repository is the standalone source for the `qt-file-canvas`
+distribution.  The import name remains `qt_file_canvas`; the root-layout
+`pyproject.toml` maps that package name to this repository root.
 
 ## Quick start
 
@@ -145,33 +145,27 @@ class ViewerRegistry:
 ## Run the demo
 
 ```bash
-python -m hvsr_pro.packages.qt_file_canvas.examples.demo D:/Some/Folder
+python -m qt_file_canvas.examples.demo D:/Some/Folder
 ```
 
 Opens a 1100x700 window with the canvas rooted at the given folder.
 Logs viewer failures and successful opens to stdout.
 
-## Repo extraction
+## Install From Source
 
-When the package is ready to leave the monorepo:
+From a sibling application repository:
 
 ```bash
-git subtree split --prefix=hvsr_pro/packages/qt_file_canvas -b qt-file-canvas-split
-git push <new-remote> qt-file-canvas-split:main
+pip install -e ../qt_canvas
 ```
 
-After extraction, the only change in consumers is `requirements.txt`
-(`qt-file-canvas>=0.1`).  The `from qt_file_canvas import FileCanvas`
-line stays unchanged because the PyPI distribution name
-(`qt-file-canvas`) maps cleanly to the import name (`qt_file_canvas`).
-The `pyproject.toml` template lives next to this README and is ready
-to use after the split — just bump the version and add the project
-URL.
+Consumer code should import from `qt_file_canvas`; it should not import
+through an application's private package namespace.
 
 ## Tests
 
 ```bash
-QT_QPA_PLATFORM=offscreen pytest hvsr_pro/packages/qt_file_canvas/tests -q
+QT_QPA_PLATFORM=offscreen pytest tests -q
 ```
 
 Tests skip viewer modules whose optional dependency is missing
@@ -185,7 +179,7 @@ The package imports nothing from the rest of HV Pro:
 
 ```bash
 grep -R "hv_hub\|gui_v2\|project_manager\|hv_studio" \
-     hvsr_pro/packages/qt_file_canvas
+     .
 # (empty)
 ```
 

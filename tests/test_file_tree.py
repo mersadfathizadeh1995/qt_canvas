@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 from PySide6.QtWidgets import QApplication
 
-from hvsr_pro.packages.qt_file_canvas.file_tree import FileTree
+from qt_file_canvas.file_tree import FileTree
 
 
 def test_construct_without_root(qapp: QApplication) -> None:

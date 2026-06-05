@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 from PySide6.QtWidgets import QApplication, QPlainTextEdit
 
-from hvsr_pro.packages.qt_file_canvas.viewers.binary import (
+from qt_file_canvas.viewers.binary import (
     HEX_DUMP_BYTES,
     BinaryViewer,
 )

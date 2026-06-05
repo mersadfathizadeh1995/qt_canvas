@@ -1,4 +1,4 @@
-"""Standalone demo: ``python -m hvsr_pro.packages.qt_file_canvas.examples.demo <folder>``.
+"""Standalone demo: ``python -m qt_file_canvas.examples.demo <folder>``.
 
 Opens a 1100x700 window with a :class:`FileCanvas` rooted at the
 folder argument (defaults to the current working directory).  The

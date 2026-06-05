@@ -8,7 +8,7 @@ import pytest
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication
 
-from hvsr_pro.packages.qt_file_canvas import FileCanvas
+from qt_file_canvas import FileCanvas
 
 
 def test_construct_without_root(qapp: QApplication) -> None:

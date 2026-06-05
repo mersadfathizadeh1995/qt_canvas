@@ -7,13 +7,13 @@ from pathlib import Path
 import pytest
 from PySide6.QtWidgets import QApplication
 
-from hvsr_pro.packages.qt_file_canvas.registry import (
+from qt_file_canvas.registry import (
     DEFAULT_REGISTRY,
     ViewerRegistry,
     ViewerSpec,
 )
-from hvsr_pro.packages.qt_file_canvas.viewer_stack import ViewerStack
-from hvsr_pro.packages.qt_file_canvas.viewers.base import FileViewer
+from qt_file_canvas.viewer_stack import ViewerStack
+from qt_file_canvas.viewers.base import FileViewer
 
 
 class _StubViewer(FileViewer):

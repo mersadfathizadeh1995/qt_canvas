@@ -10,7 +10,7 @@ from PySide6.QtWidgets import QApplication
 pytest.importorskip("PySide6.QtPdf")
 pytest.importorskip("PySide6.QtPdfWidgets")
 
-from hvsr_pro.packages.qt_file_canvas.viewers.pdf import PdfViewer
+from qt_file_canvas.viewers.pdf import PdfViewer
 
 
 def test_load_pdf_does_not_raise(

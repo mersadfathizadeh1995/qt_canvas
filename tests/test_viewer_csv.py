@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 from PySide6.QtWidgets import QApplication, QTableView
 
-from hvsr_pro.packages.qt_file_canvas.viewers.csv_viewer import CsvViewer
+from qt_file_canvas.viewers.csv_viewer import CsvViewer
 
 
 def test_load_csv_populates_model(

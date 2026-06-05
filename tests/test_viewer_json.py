@@ -13,7 +13,7 @@ from PySide6.QtWidgets import (
     QTreeWidget,
 )
 
-from hvsr_pro.packages.qt_file_canvas.viewers.json_viewer import (
+from qt_file_canvas.viewers.json_viewer import (
     PRETTY_PRINT_BYTES,
     JsonViewer,
 )
