@@ -149,6 +149,15 @@ class FileCanvas(QFrame):
             # Path doesn't exist or is unreachable; fall back to empty.
             self._viewer_stack.show_empty()
 
+    def reveal(self, path: Path, *, collapse_others: bool = True) -> None:
+        """Collapse the tree and expand down to *path* (a folder or file).
+
+        The "focus this folder" gesture used by hosts that drive the tree from
+        an external selector (e.g. a per-shot navigator).  Delegates to
+        :meth:`FileTree.reveal`.
+        """
+        self._tree.reveal(Path(path), collapse_others=collapse_others)
+
     def refresh(self) -> None:
         """Re-read the current root from disk + reload the current file."""
         self._tree.refresh()

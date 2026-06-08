@@ -68,6 +68,7 @@ class FileTree(QFrame):
         super().__init__(parent)
         self.setObjectName("FileTree")
         self._root: Optional[Path] = None
+        self._reveal_target: Optional[Path] = None
 
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
@@ -237,6 +238,40 @@ class FileTree(QFrame):
         index = self._view.currentIndex()
         return self._index_to_path(index)
 
+    def reveal(self, path: Path, *, collapse_others: bool = True) -> None:
+        """Collapse the tree and expand the ancestor chain down to *path*.
+
+        The "show me just this folder" gesture: collapse everything (so the
+        rest of the project folds away), expand from the root down to *path*,
+        then select + scroll to it.  QFileSystemModel populates each directory
+        asynchronously, so when an ancestor index is not indexed yet the rest is
+        retried from :meth:`_on_directory_loaded` once that directory loads.
+        """
+        self._reveal_target = Path(path)
+        if collapse_others:
+            self._view.collapseAll()
+        self._apply_reveal()
+
+    def _apply_reveal(self) -> None:
+        target = getattr(self, "_reveal_target", None)
+        if target is None or self._root is None:
+            return
+        try:
+            rel = target.resolve(strict=False).relative_to(
+                Path(self._root).resolve(strict=False))
+        except (ValueError, OSError):
+            self._reveal_target = None
+            return
+        cur = Path(self._root)
+        for part in rel.parts:
+            cur = cur / part
+            idx = self._model.index(str(cur))
+            if not idx.isValid():
+                return                       # not indexed yet -> wait for load
+            self._view.expand(idx)
+        if self.select_path(target):
+            self._reveal_target = None       # fully revealed
+
     def select_path(self, path: Path) -> bool:
         """Programmatically select *path* in the tree.
 
@@ -305,6 +340,10 @@ class FileTree(QFrame):
             same = False
         if same:
             self._update_placeholder()
+        # a directory finished loading -> continue any pending reveal that was
+        # waiting on this (or a deeper) directory to be indexed.
+        if getattr(self, "_reveal_target", None) is not None:
+            self._apply_reveal()
 
     def _update_placeholder(self) -> None:
         """Show the tree or the empty/missing placeholder as appropriate.

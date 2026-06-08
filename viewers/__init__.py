@@ -22,5 +22,6 @@ from . import excel_viewer as _excel_v    # noqa: F401
 from . import text as _text_v             # noqa: F401
 from . import markdown_viewer as _md_v    # noqa: F401
 from . import pdf as _pdf_v               # noqa: F401
+from . import npz as _npz_v               # noqa: F401
 
 __all__: list[str] = []
