@@ -23,5 +23,6 @@ from . import text as _text_v             # noqa: F401
 from . import markdown_viewer as _md_v    # noqa: F401
 from . import pdf as _pdf_v               # noqa: F401
 from . import npz as _npz_v               # noqa: F401
+from . import seg2 as _seg2_v             # noqa: F401
 
 __all__: list[str] = []

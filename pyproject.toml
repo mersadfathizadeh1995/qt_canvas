@@ -40,12 +40,14 @@ csv = ["pandas>=1.5"]
 excel = ["openpyxl>=3.1"]
 syntax = ["Pygments>=2.14"]
 plot = ["numpy>=1.21", "matplotlib>=3.5"]
+seismic = ["obspy>=1.3", "numpy>=1.21", "matplotlib>=3.5"]
 all = [
     "pandas>=1.5",
     "openpyxl>=3.1",
     "Pygments>=2.14",
     "numpy>=1.21",
     "matplotlib>=3.5",
+    "obspy>=1.3",
 ]
 test = [
     "pytest>=7.0",
